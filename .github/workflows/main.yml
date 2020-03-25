@@ -2,6 +2,7 @@ on: [push]
 
 env:
     REGISTRY_NAME: docker.io
+    IMAGE_OWNER: oconnormi
 
 jobs:
     build:
@@ -12,7 +13,7 @@ jobs:
       - uses: azure/docker-login@v1
         with:
           login-server: ${{ env.REGISTRY_NAME }}
-          username: ${{ secrets.REGISTRY_USERNAME }} 
+          username: ${{ env.IMAGE_OWNER }} 
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
           make image IMAGE_REGISTRY=${{ env.REGISTRY_NAME }} IMAGE_TAG=${{ github.sha }}
