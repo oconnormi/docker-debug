@@ -1,0 +1,19 @@
+on: [push]
+
+env:
+    REGISTRY_NAME: docker.io
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@master
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.REGISTRY_NAME }}
+          username: ${{ secrets.REGISTRY_USERNAME }} 
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          make image IMAGE_REGISTRY=${{ env.REGISTRY_NAME }} IMAGE_TAG=${{ github.sha }}
+          make push IMAGE_REGISTRY=${{ env.REGISTRY_NAME }} IMAGE_TAG=${{ github.sha }}
