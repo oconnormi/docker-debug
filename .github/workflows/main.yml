@@ -1,4 +1,9 @@
-on: [push]
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
 
 env:
     REGISTRY_NAME: docker.io
@@ -17,3 +22,5 @@ jobs:
       - run: |
           make image IMAGE_REGISTRY=${{ env.REGISTRY_NAME }} IMAGE_TAG=${{ github.sha }}
           make push IMAGE_REGISTRY=${{ env.REGISTRY_NAME }} IMAGE_TAG=${{ github.sha }}
+          make image IMAGE_REGISTRY=${{ env.REGISTRY_NAME }} IMAGE_TAG=latest
+          make push IMAGE_REGISTRY=${{ env.REGISTRY_NAME }} IMAGE_TAG=latest

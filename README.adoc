@@ -12,6 +12,21 @@ This a general purpose debugging utility image. The main use case is to deploy a
 * dig
 * jq
 
+== Usage
+
+=== Docker
+
+`docker run -it oconnormi/debug`
+
+=== Kubernetes Ephemeral Container
+
+[IMPORTANT]
+====
+This requires the https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers[Ephemeral Containers] alpha feature in kubernetes 1.18 in order to work.
+====
+
+`kubectl alpha debug -it <pod> --image=oconnormi/debug --target=<pod>`
+
 == Building
 
 To build run `make image`
