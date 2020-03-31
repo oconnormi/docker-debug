@@ -1,3 +1,14 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+:toc:
+:toc-placement!:
+
 = Debug
 
 This a general purpose debugging utility image. The main use case is to deploy a container into a k8s environment that can be used to troubleshoot and debug a running application.
